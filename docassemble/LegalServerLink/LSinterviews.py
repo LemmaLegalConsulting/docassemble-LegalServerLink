@@ -2,8 +2,16 @@
 from flask import request, jsonify
 from flask_cors import cross_origin
 from docassemble.base.util import get_config
-from docassemble.webapp.app_object import app, csrf
-from docassemble.webapp.server import api_verify, jsonify_with_status
+try:
+    from docassemble.webapp.app_object import app, csrf
+except ImportError:  # docassemble 1.10.x
+    from docassemble.webapp.app_object import flaskapp as app
+    from docassemble.webapp.extensions import csrf
+try:
+    from docassemble.webapp.api.helpers import api_verify
+    from docassemble.webapp.utils.helpers import jsonify_with_status
+except ImportError:  # docassemble 1.9.x
+    from docassemble.webapp.server import api_verify, jsonify_with_status
 
 
 @app.route("/lsinterviews", methods=["GET"])
