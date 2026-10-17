@@ -16,3 +16,7 @@ legalserver:
 The interview normalizes abbreviation `alkiln` plus type `Demo` to `alkiln-demo`. The token must permit matter, user, assignment, and document access for the synthetic records above.
 
 The package also includes a Flask compatibility repair: API preload resolves app/CSRF in both older and newer docassemble module layouts. Four compatibility/authentication unit cases passed. This removes an import blocker for dependent interviews; it does not replace the LegalServer integration or make this sample-letter scenario pass without its environment.
+
+Create repository secret `ALKILN_DOCASSEMBLE_CONFIG` containing a complete disposable docassemble YAML configuration. The workflow passes it as `CONFIG_CONTENTS` to the temporary server; this is actual config wiring, not just a documented secret name. Configure only test service accounts/endpoints. This does not provision private dependency Git access.
+
+The fixture now signs into the temporary server using its synthetic admin credentials from the isolated action outputs (`ALKILN_ADMIN_EMAIL`/`ALKILN_ADMIN_PASSWORD`). No production login is used. Service authentication and any required profile/database seed data remain separate prerequisites.

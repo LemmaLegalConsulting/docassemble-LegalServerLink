@@ -3,7 +3,8 @@ Feature: Complete LegalServerLink interview
   # Reviewed against the interview and its local includes.
   # Static ALDashboard draft curated to the chosen branch; browser validation runs in CI.
   Scenario: Complete LegalServerLink and verify the result
-    Given I start the interview at "sample_letter.yml"
+    Given I sign in with the email "ALKILN_ADMIN_EMAIL" and the password "ALKILN_ADMIN_PASSWORD"
+    And I start the interview at "sample_letter.yml"
     And the maximum seconds for each Step is 300
     And the user gets to "final_letter" with this data:
       | var | value |
